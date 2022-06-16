@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <style>
+            @font-face {
+                font-family:'SYHT-Regular';
+                src:url(./Fonts/syhtr.ttf); 
+                font-style:normal; font-weight:normal
+            }
+            @font-face {
+                font-family:'Cftaa';
+                src:url(./fonts/comfortaa.ttf); 
+                font-style:normal; font-weight:normal
+            }
+            @font-face {
+                font-family: "emoji";
+                font-display: block;
+                src:url("./fonts/n.ttf");
+            }
+            body {
+                box-sizing: border-box;
+                margin-left: 10px;
+                margin-right: 10px;
+                color: var(--bs-gray-900);
+                display: flex;
+                flex-direction: column;
+                font-family:'SYHT-Regular',"emoji";
+                background-color: var(--bs-gray-300);
+            }
+            @keyframes down-in {
+                0% { opacity: 0;margin-top: 0px; }
+                100% { opacity: 1;margin-top: 15px; }
+            }
+            .header {
+                border-style: none;
+                margin: auto;
+                margin-top: 0px;
+                background-color: transparent;
+                font-size: xx-large;
+                background-color: var(--bs-gray-200);
+                width: 300px;
+                text-align: center;
+                padding-top: 15px;
+                opacity: 0;
+                font-weight:700;
+                animation: down-in 1s ease-in-out 500ms;
+                animation-fill-mode: forwards;
+                border-radius: 15px;
+                padding: 15px;
+                box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.3);
+                margin-bottom: 15px;
+            }
+            @keyframes scale-in {
+                0% { opacity: 0;box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);margin-top: 0px; }
+                50% { opacity: 0; }
+                100% { opacity: 1;box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.3);margin-top: 30px; }
+            }
+            card {
+                background-color: var(--bs-gray-200);
+                display: block;
+                border-radius: 15px;
+                padding: 10px;
+                opacity: 0;
+                animation: scale-in 1s ease-in-out;
+                animation-fill-mode: forwards;
+                box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+                text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+            }
+            div-line {
+                display: block;
+                border-top:1px solid var(--bs-gray-900);
+                margin-top: 5px;
+            }
+            .card-title {
+                font-size: large;
+            }
+            .pk-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+                min-height: 200px;
+            }
+            .pk-pk {
+                font-size: 35px;
+                font-weight: 700;
+                font-family:'Cftaa';
+            }
+            .pk-name {
+                font-weight: 600;
+                font-size: 45px;
+                text-align: center;
+                transition: all 0.2s ease-in-out;
+            }
+            .pk-num {
+                font-weight: 400;
+                font-size: xx-large;
+                text-align: center;
+            }
+            .pk-name:hover {
+                transform: translateY(-5px);
+                transition: all 0.2s ease-in-out;
+            }
+            .below-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill,600px);
+                justify-content: space-evenly;
+            }
+            .add-pk {
+                border-style: none;
+                margin: auto;
+                background-color: transparent;
+                font-size: larger;
+                background-color: var(--bs-gray-200);
+                width: fit-content;
+                text-align: center;
+                min-width: 250px;
+                border-radius: 15px;
+                opacity: 0;
+                padding: 15px;
+                box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+                transition: all 0.2s ease-in-out;
+                margin-bottom: 15px;
+                animation: down-in 1s ease-in-out 500ms;
+                animation-fill-mode: forwards;
+            }
+
+            .add-pk:hover {
+                background-color: var(--bs-gray-100);
+                box-shadow: 7.5px 7.5px 7.5px 0px rgba(0, 0, 0, 0.3);
+                color: black;
+                transform: scale(1.05);
+                transition: all 0.2s ease-in-out;
+            }
+            :root {
+                --bs-blue: #0d6efd;
+                --bs-indigo: #6610f2;
+                --bs-purple: #6f42c1;
+                --bs-pink: #d63384;
+                --bs-red: #dc3545;
+                --bs-orange: #fd7e14;
+                --bs-yellow: #ffc107;
+                --bs-green: #198754;
+                --bs-teal: #20c997;
+                --bs-cyan: #0dcaf0;
+                --bs-white: #fff;
+                --bs-gray: #6c757d;
+                --bs-gray-dark: #343a40;
+                --bs-gray-100: #f8f9fa;
+                --bs-gray-200: #e9ecef;
+                --bs-gray-300: #dee2e6;
+                --bs-gray-400: #ced4da;
+                --bs-gray-500: #adb5bd;
+                --bs-gray-600: #6c757d;
+                --bs-gray-700: #495057;
+                --bs-gray-800: #343a40;
+                --bs-gray-900: #212529;
+                --bs-primary: #0d6efd;
+                --bs-secondary: #6c757d;
+                --bs-success: #198754;
+                --bs-info: #0dcaf0;
+                --bs-warning: #ffc107;
+                --bs-danger: #dc3545;
+                --bs-light: #f8f9fa;
+                --bs-dark: #212529;
+            }
+        </style>
+        <script>
+            function agree(obj,nn){
+                n=nn/2;
+                k = Number(obj.parentElement.parentElement.children[0].innerText.at(-1));
+                if(document.cookie.indexOf(k)!=-1)return 0;
+                t = document.evaluate("/html/body/div[2]/card/div[2]/span["+(nn+1)+"]/text()", document).iterateNext().textContent;
+                xhr = new XMLHttpRequest();
+                xhr.open("POST","http://127.0.0.1/pk_apis/agree_pks");
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4){
+                        if(xhr.status==200){
+                                console.log(xhr.responseText);
+                                alert("表态成功捏😋");
+                                obj.parentElement.children[nn].children[1].innerText=Number(obj.parentElement.children[nn].children[1].innerText)+1;
+                                document.cookie += "has:"+k;
+                                return 0
+                            }
+                        }
+                }
+                xhr.setRequestHeader("Content-type","text/plain");
+                xhr.send(k + " " + t)
+            }
+            function add_pk(t1,t2){
+                if(document.cookie.indexOf("yes")!=-1)return 0;
+                xhr = new XMLHttpRequest();
+                xhr.open("POST","http://127.0.0.1/pk_apis/add_pks");
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4){
+                        if(xhr.status==200){
+                                console.log(xhr.responseText);
+                                n = new Date();
+                                n.setTime(n.getTime()+5*60*1000);
+                                document.cookie += "created:yes; expires="+n.toGMTString();
+                                location.reload();
+                                return 0
+                            }
+                        }
+                }
+                xhr.setRequestHeader("Content-type","text/plain");
+                xhr.send(t1 + " " + t2)
+            }
+            function get_vs(){
+                xhr = new XMLHttpRequest();
+                xhr.open("get","http://127.0.0.1/pk_apis/get_pks",true);
+                xhr.onreadystatechange=function(){
+                    if(xhr.readyState==4){
+                        if(xhr.status==200){
+                                a = JSON.parse(xhr.responseText);
+                                init_vs(a)
+                                return a;
+                            }
+                        }
+                }
+                xhr.send();
+            }
+            function init_vs(d){
+                for(i=0;i<Object.keys(d).length;i++){
+                    document.querySelector("body > div.below-container").children[i].children[0].innerText = "Card #"+Object.keys(d)[i]
+                    document.querySelector("body > div.below-container").children[i].children[2].children[0].innerHTML = d[Object.keys(d)[i]][0] + '<br><span class=pk-num>' + d[Object.keys(d)[i]][2] + '</span>'
+                    document.querySelector("body > div.below-container").children[i].children[2].children[2].innerHTML = d[Object.keys(d)[i]][1] + '<br><span class=pk-num>' + d[Object.keys(d)[i]][3] + '</span>'
+                }
+                delete_card()
+            }
+            function delete_card(){
+                
+                c = document.querySelector("body > div.below-container")
+                n=c.childElementCount;
+                for(i=0;i<n;i=i){
+                    if(c.children[i].children[0].innerText=="error"){
+                        c.children[i].remove();
+                    }
+                    else{
+                        i++;
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body onload="get_vs()">
+        <div class="header">
+            <div class="title">斗虫小站捏</div>
+        </div>
+        <button class="add-pk" onclick="var s=prompt('输入数据用空格分隔开 例如：玉桂狗 库洛米');add_pk(s.split(' ')[0],s.split(' ')[1]);">发布你的想法🤗</button>
+        <div class="below-container">
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+            <card>
+                <div class="card-title">error</div>
+                <div-line></div-line>
+                <div class="pk-container">
+                    <span class="pk-name" onclick="agree(this,0);">
+                        名字1
+                    </span>
+                    <span class="pk-pk">v.s.</span>
+                    <span class="pk-name" onclick="agree(this,2);">
+                        名字2
+                    </span>
+                </div>
+            </card>
+        </div>
+    </body>
+</html>
