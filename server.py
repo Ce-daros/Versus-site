@@ -16,7 +16,6 @@ def read_pks():
         for row in csv.reader(f,skipinitialspace=True):
             pks[row[0]]=[row[1],row[2],int(row[3]),int(row[4])]
     pks_json=json.dumps(pks)
-    print("Read finish.Readed: " + str(pks))
     dic_to_list()
 
 def dic_to_list():
@@ -24,7 +23,6 @@ def dic_to_list():
     pks_list.clear()
     for key,value in pks.items():
         pks_list.append([int(key),value[0],value[1],int(value[2]),int(value[3])])
-    print("Read finish.Readed: " + str(pks_list))
 
 def insert_pks(thing1,thing2):
     global pks,pks_json,invaild_time,pks_list
@@ -40,7 +38,6 @@ def agree_pks(key,thingname):
         
     elif(pks[key][1]==thingname):
         pks[key][3]=pks[key][3]+1
-    print(thingname,thingname+"ddd",pks[key][1]==thingname)
     rewrite_pks()
 
 def rewrite_pks():
