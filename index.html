@@ -166,7 +166,7 @@
                     }
                     
                 }
-                k = Number(obj.parentElement.parentElement.children[0].innerText.at(-1));
+                k = Number(obj.parentElement.parentElement.children[0].innerText.split("#")[1]);
                 cid++;
                 t = document.evaluate("/html/body/div[2]/card["+cid+"]/div[2]/span["+(nn+1)+"]/text()", document).iterateNext().textContent;
                 xhr = new XMLHttpRequest();
