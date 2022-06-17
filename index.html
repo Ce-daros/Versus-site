@@ -187,7 +187,6 @@
                 xhr.send(k + " " + t)
             }
             function add_pk(t1,t2){
-                if(document.cookie.indexOf("yes")!=-1)return 0;
                 xhr = new XMLHttpRequest();
                 xhr.open("POST","http://www.ikia.top/pk_apis/add_pks");
                 xhr.onreadystatechange=function(){
