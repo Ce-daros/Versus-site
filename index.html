@@ -169,9 +169,22 @@
         <script>
             function agree(obj,nn){
                 n=nn/2;
+                cid=0;
+                for(var i=0;i<document.querySelector("body > div.below-container").childElementCount;i++){
+                    if(document.querySelector("body > div.below-container").children[i].children[2].children[0]==obj){
+                        cid=i;
+                    }
+                    else{
+                        if(document.querySelector("body > div.below-container").children[i].children[2].children[2]==obj){
+                            cid=i;
+                        }
+                    }
+                    
+                }
                 k = Number(obj.parentElement.parentElement.children[0].innerText.at(-1));
+                cid++;
                 if(document.cookie.indexOf(k)!=-1)return 0;
-                t = document.evaluate("/html/body/div[2]/card/div[2]/span["+(nn+1)+"]/text()", document).iterateNext().textContent;
+                t = document.evaluate("/html/body/div[2]/card["+cid+"]/div[2]/span["+(nn+1)+"]/text()", document).iterateNext().textContent;
                 xhr = new XMLHttpRequest();
                 xhr.open("POST","http://www.ikia.top/pk_apis/agree_pks");
                 xhr.onreadystatechange=function(){
