@@ -173,7 +173,7 @@
                 if(document.cookie.indexOf(k)!=-1)return 0;
                 t = document.evaluate("/html/body/div[2]/card/div[2]/span["+(nn+1)+"]/text()", document).iterateNext().textContent;
                 xhr = new XMLHttpRequest();
-                xhr.open("POST","www.ikia.top/pk_apis/agree_pks");
+                xhr.open("POST","http://www.ikia.top/pk_apis/agree_pks");
                 xhr.onreadystatechange=function(){
                     if(xhr.readyState==4){
                         if(xhr.status==200){
@@ -191,7 +191,7 @@
             function add_pk(t1,t2){
                 if(document.cookie.indexOf("yes")!=-1)return 0;
                 xhr = new XMLHttpRequest();
-                xhr.open("POST","www.ikia.top/pk_apis/add_pks");
+                xhr.open("POST","http://www.ikia.top/pk_apis/add_pks");
                 xhr.onreadystatechange=function(){
                     if(xhr.readyState==4){
                         if(xhr.status==200){
@@ -209,7 +209,7 @@
             }
             function get_vs(){
                 xhr = new XMLHttpRequest();
-                xhr.open("get","www.ikia.top/pk_apis/get_pks",true);
+                xhr.open("get","http://www.ikia.top/pk_apis/get_pks",true);
                 xhr.onreadystatechange=function(){
                     if(xhr.readyState==4){
                         if(xhr.status==200){
